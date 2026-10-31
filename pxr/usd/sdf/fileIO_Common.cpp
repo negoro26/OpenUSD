@@ -259,7 +259,7 @@ struct _ListOpWriter
     }
     static void Write(Sdf_TextOutput& out, size_t indent, const T& item)
     {
-        Sdf_FileIOUtility::Write(out, indent, "%s", TfStringify(item).c_str());
+        Sdf_FileIOUtility::Puts(out, indent, TfStringify(item));
     }
 };
 
@@ -532,7 +532,8 @@ Sdf_FileIOUtility::WriteDefaultValue(
 
     // General case value to string conversion and write-out.
     std::string valueString = Sdf_FileIOUtility::StringFromVtValue(value, out);
-    Sdf_FileIOUtility::Write(out, 0, " = %s", valueString.c_str());
+    Sdf_FileIOUtility::Puts(out, 0, " = ");
+    Sdf_FileIOUtility::Puts(out, 0, valueString);
 }
 
 void
@@ -595,9 +596,10 @@ Sdf_FileIOUtility::WriteTimeSamples(
         }
     }
     else if (timeSamplesVal.IsHolding<SdfHumanReadableValue>()) {
-        Write(out, indent+1, "%s\n",
-              TfStringify(timeSamplesVal.
-                          UncheckedGet<SdfHumanReadableValue>()).c_str());
+        Puts(out, indent+1,
+             TfStringify(timeSamplesVal.
+                         UncheckedGet<SdfHumanReadableValue>()));
+        Puts(out, 0, "\n");
     }
     return true;
 }

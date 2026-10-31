@@ -290,7 +290,8 @@ Sdf_WriteSimpleField(
                 Sdf_FileIOUtility::WriteDictionary(out, indent, true, boxedValue.Get<VtDictionary>());
             } 
             else if (boxedValue.IsHolding<std::string>()) {
-                Sdf_FileIOUtility::Write(out, 0, "%s\n", boxedValue.Get<std::string>().c_str());
+                Sdf_FileIOUtility::Puts(out, 0, boxedValue.Get<std::string>());
+                Sdf_FileIOUtility::Puts(out, 0, "\n");
             }
         }
         return;
@@ -304,9 +305,9 @@ Sdf_WriteSimpleField(
         Sdf_FileIOUtility::Write(out, 0, "%s\n", TfStringify(value.Get<bool>()).c_str());
     }
     else {
-        Sdf_FileIOUtility::Write(
-            out, 0, "%s\n",
-            Sdf_FileIOUtility::StringFromVtValue(value, out).c_str());
+        Sdf_FileIOUtility::Puts(
+            out, 0, Sdf_FileIOUtility::StringFromVtValue(value, out));
+        Sdf_FileIOUtility::Puts(out, 0, "\n");
     }
 }
 

@@ -462,7 +462,7 @@ _WriteLayer(
     string headerStr = header.GetString();
     if (!headerStr.empty()) {
         _Write(out, 0, "(\n");
-        _Write(out, 0, "%s", headerStr.c_str());
+        Sdf_FileIOUtility::Puts(out, 0, headerStr);
         _Write(out, 0, ")\n");
     }
 

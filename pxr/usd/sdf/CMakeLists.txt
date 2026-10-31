@@ -406,6 +406,16 @@ pxr_build_test(testSdfTextFile
         testenv/testSdfTextFile.cpp
 )
 
+pxr_build_test(testSdfUsdaFileFormatLargeValues
+    LIBRARIES
+        arch
+        sdf
+        tf
+        vt
+    CPPFILES
+        testenv/testSdfUsdaFileFormatLargeValues.cpp
+)
+
 pxr_build_test(testSdfUsdaFileFormatParsing
     LIBRARIES
         sdf
@@ -684,6 +694,10 @@ pxr_register_test(testSdfPathThreading
 
 pxr_register_test(testSdfPredicateExpression_Cpp
     COMMAND "${CMAKE_INSTALL_PREFIX}/tests/testSdfPredicateExpression_Cpp"
+)
+
+pxr_register_test(testSdfUsdaFileFormatLargeValues
+    COMMAND "${CMAKE_INSTALL_PREFIX}/tests/testSdfUsdaFileFormatLargeValues"
 )
 
 pxr_register_test(testSdfUsdaFileFormatParsing
